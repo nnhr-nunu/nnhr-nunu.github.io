@@ -2,35 +2,35 @@ name: pages
 
 on:
   push:
-    branches: [main]
+    branches: [publisher]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pages-publish
+  cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: mkdir -p out && cp -R . out && rm -rf out/.git out/.github out/out
-      - run: touch out/.nojekyll
-      - uses: actions/upload-pages-artifact@v3
         with:
-          path: out
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          repository: nnhr-nunu/TopicStream_Nu
+          ref: cursor/topicstream-nu-app-d395
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm test
+      - run: bash scripts/build-pages.sh
+      - run: touch out/.nojekyll
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: main
+          force_orphan: true
+          enable_jekyll: false
