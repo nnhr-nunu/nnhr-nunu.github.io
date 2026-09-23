@@ -14,29 +14,49 @@ jobs:
       - name: Decode base64 payloads into site files
         run: |
           python3 - <<'PY'
-          import base64, hashlib, json, os
+          import base64, hashlib, json
           from pathlib import Path
           root = Path('_deploy-payload')
-          man = json.loads((root/'manifest.json').read_text())
+          man_path = root / 'manifest.json'
+          if not man_path.exists():
+              print('no manifest yet')
+              Path('decode-stats.txt').write_text('0 1')
+              raise SystemExit(0)
+          man = json.loads(man_path.read_text())
+          wrote = 0
+          skipped = 0
           for item in man:
-              dest = Path(item['path'])
-              parts = []
-              for i in range(item['parts']):
-                  fp = root / f"{item['path'].replace('/', '__')}.{i:02d}.b64"
-                  parts.append(fp.read_text().strip())
-              data = base64.b64decode(''.join(parts))
+              fps = [root / f"{item['path'].replace('/', '__')}.{i:02d}.b64" for i in range(item['parts'])]
+              if not all(fp.exists() for fp in fps):
+                  print('skip incomplete', item['path'])
+                  skipped += 1
+                  continue
+              data = base64.b64decode(''.join(fp.read_text().strip() for fp in fps))
               got = hashlib.sha256(data).hexdigest()
               if got != item['sha256']:
                   raise SystemExit(f"sha mismatch {item['path']}: {got} != {item['sha256']}")
+              dest = Path(item['path'])
               dest.parent.mkdir(parents=True, exist_ok=True)
               dest.write_bytes(data)
               print('wrote', dest, len(data))
+              wrote += 1
+          Path('decode-stats.txt').write_text(f'{wrote} {skipped}')
+          print('decoded', wrote, 'skipped', skipped)
           PY
       - name: Commit decoded assets
         run: |
           git config user.name "ぬぬはら"
           git config user.email "110435137+nnhr-nunu@users.noreply.github.com"
-          rm -rf _deploy-payload
+          wrote=0
+          skipped=1
+          if [ -f decode-stats.txt ]; then
+            wrote=$(cut -d' ' -f1 decode-stats.txt)
+            skipped=$(cut -d' ' -f2 decode-stats.txt)
+            rm -f decode-stats.txt
+          fi
+          if [ "$skipped" = "0" ] && [ "$wrote" != "0" ]; then
+            rm -rf _deploy-payload
+          fi
           git add -A
           git diff --cached --quiet && echo 'no changes' && exit 0
           git commit -m "deploy: 利用中の配信一覧とコメントパルス"
