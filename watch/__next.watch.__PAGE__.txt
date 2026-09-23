@@ -1,0 +1,25 @@
+1:"$Sreact.fragment"
+2:"$Sreact.suspense"
+3:I[7537,["/_next/static/chunks/2uv0i5q-gn4qk.js","/_next/static/chunks/3072x8oes0aru.js","/_next/static/chunks/3klzmyz75li2_.js","/_next/static/chunks/0wyq3807dt1un.js","/_next/static/chunks/3n501l8bz6dn7.js"],"WatchPageClient"]
+4:I[97367,["/_next/static/chunks/2uv0i5q-gn4qk.js","/_next/static/chunks/3072x8oes0aru.js","/_next/static/chunks/3klzmyz75li2_.js"],"OutletBoundary"]
+8:I[97367,["/_next/static/chunks/2uv0i5q-gn4qk.js","/_next/static/chunks/3072x8oes0aru.js","/_next/static/chunks/3klzmyz75li2_.js"],"ViewportBoundary"]
+9:I[97367,["/_next/static/chunks/2uv0i5q-gn4qk.js","/_next/static/chunks/3072x8oes0aru.js","/_next/static/chunks/3klzmyz75li2_.js"],"MetadataBoundary"]
+b:I[39756,["/_next/static/chunks/2uv0i5q-gn4qk.js","/_next/static/chunks/3072x8oes0aru.js","/_next/static/chunks/3klzmyz75li2_.js"],"default"]
+c:I[37457,["/_next/static/chunks/2uv0i5q-gn4qk.js","/_next/static/chunks/3072x8oes0aru.js","/_next/static/chunks/3klzmyz75li2_.js"],"default"]
+f:I[63962,["/_next/static/chunks/2uv0i5q-gn4qk.js","/_next/static/chunks/3072x8oes0aru.js","/_next/static/chunks/3klzmyz75li2_.js"],"AppProviders"]
+:HL["/_next/static/chunks/1ix59xuhq-q14.css","style"]
+:HL["/_next/static/chunks/1aujye241hgap.css","style"]
+:HL["/_next/static/chunks/1-38yeitiitpi.css","style"]
+7:X
+e:X
+e:C
+0:{"buildId":"c2BQKYlG9c5VHz_7FMCk4","data":[{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"h-svh overflow-hidden","children":["$","$2",null,{"fallback":["$","div",null,{"className":"flex h-full items-center justify-center text-sm text-muted-foreground","children":"いっしょに見る画面を準備中…"}],"children":["$","$L3",null,{}]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/1ix59xuhq-q14.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/0wyq3807dt1un.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/3n501l8bz6dn7.js","async":true}]],["$","$L4",null,{"children":["$","$2",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":"$@6","staleTime":"$7","varyParams":null},{"rsc":["$","$1","h",{"children":[null,["$","$L8",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L9",null,{"children":["$","$2",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"TopicStream"}],["$","meta","1",{"name":"description","content":"雑談配信向けの話題マインドマップ。クリックで関連トークが広がります。"}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"isPartial":"$@a","staleTime":"$7","varyParams":null},{"rsc":["$","$1","c",{"children":[null,["$","$Lb",null,{"parallelRouterKey":"children","template":["$","$Lc",null,{}]}]]}],"isPartial":"$@d","staleTime":"$7","varyParams":"$e"},{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/1aujye241hgap.css","precedence":"next"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/1-38yeitiitpi.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/2uv0i5q-gn4qk.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/3072x8oes0aru.js","async":true}],["$","script","script-2",{"src":"/_next/static/chunks/3klzmyz75li2_.js","async":true}]],["$","html",null,{"lang":"ja","data-theme":"fresh","suppressHydrationWarning":true,"className":"noto_sans_jp_96e232d8-module__rjGCqG__variable geist_mono_8d43a2aa-module__8Li5zG__variable h-full antialiased","children":["$","body",null,{"className":"flex min-h-full flex-col","children":["$","$Lf",null,{"children":["$","$Lb",null,{"parallelRouterKey":"children","template":["$","$Lc",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]]}]}]}]}]]}],"isPartial":"$@10","staleTime":"$7","varyParams":null}],"isUpgradeableISRFallback":false,"a":"$@11","rootVaryParams":null,"needsRuntimeRequest":"$@12"}
+5:null
+7:300
+12:true
+7:C
+11:0
+a:"$undefined"
+d:"$undefined"
+10:"$undefined"
+6:"$undefined"
