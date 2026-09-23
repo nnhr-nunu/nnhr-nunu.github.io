@@ -11,35 +11,68 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Decode base64 payloads into site files
+      - name: Fetch hosted payloads into site files
         run: |
           python3 - <<'PY'
-          import base64, hashlib, json
+          import hashlib, json, time, urllib.request
           from pathlib import Path
+
           root = Path('_deploy-payload')
+          fetch_path = root / 'fetch-manifest.json'
           man_path = root / 'manifest.json'
-          if not man_path.exists():
-              print('no manifest yet')
-              Path('decode-stats.txt').write_text('0 1')
-              raise SystemExit(0)
-          man = json.loads(man_path.read_text())
           wrote = 0
           skipped = 0
-          for item in man:
-              fps = [root / f"{item['path'].replace('/', '__')}.{i:02d}.b64" for i in range(item['parts'])]
-              if not all(fp.exists() for fp in fps):
-                  print('skip incomplete', item['path'])
-                  skipped += 1
-                  continue
-              data = base64.b64decode(''.join(fp.read_text().strip() for fp in fps))
-              got = hashlib.sha256(data).hexdigest()
-              if got != item['sha256']:
-                  raise SystemExit(f"sha mismatch {item['path']}: {got} != {item['sha256']}")
-              dest = Path(item['path'])
-              dest.parent.mkdir(parents=True, exist_ok=True)
-              dest.write_bytes(data)
-              print('wrote', dest, len(data))
-              wrote += 1
+
+          def download(url):
+              req = urllib.request.Request(url, headers={
+                  'User-Agent': 'Mozilla/5.0 (compatible; decode-deploy/1.0)',
+                  'Accept': '*/*',
+              })
+              last = None
+              for i in range(6):
+                  try:
+                      with urllib.request.urlopen(req, timeout=90) as r:
+                          return r.read()
+                  except Exception as e:
+                      last = e
+                      time.sleep(min(2 ** i, 16))
+              raise last
+
+          if fetch_path.exists():
+              man = json.loads(fetch_path.read_text())
+              for item in man:
+                  data = download(item['url'])
+                  got = hashlib.sha256(data).hexdigest()
+                  if got != item['sha256']:
+                      raise SystemExit(f"sha mismatch {item['path']}: {got} != {item['sha256']} bytes={len(data)}")
+                  if 'bytes' in item and len(data) != item['bytes']:
+                      raise SystemExit(f"size mismatch {item['path']}: {len(data)} != {item['bytes']}")
+                  dest = Path(item['path'])
+                  dest.parent.mkdir(parents=True, exist_ok=True)
+                  dest.write_bytes(data)
+                  print('wrote', dest, len(data))
+                  wrote += 1
+          elif man_path.exists():
+              man = json.loads(man_path.read_text())
+              for item in man:
+                  fps = [root / f"{item['path'].replace('/', '__')}.{i:02d}.b64" for i in range(item['parts'])]
+                  if not all(fp.exists() for fp in fps):
+                      print('skip incomplete', item['path'])
+                      skipped += 1
+                      continue
+                  data = base64.b64decode(''.join(fp.read_text().strip() for fp in fps))
+                  got = hashlib.sha256(data).hexdigest()
+                  if got != item['sha256']:
+                      raise SystemExit(f"sha mismatch {item['path']}: {got} != {item['sha256']}")
+                  dest = Path(item['path'])
+                  dest.parent.mkdir(parents=True, exist_ok=True)
+                  dest.write_bytes(data)
+                  print('wrote', dest, len(data))
+                  wrote += 1
+          else:
+              print('no manifest yet')
+              skipped = 1
+
           Path('decode-stats.txt').write_text(f'{wrote} {skipped}')
           print('decoded', wrote, 'skipped', skipped)
           PY

@@ -1,0 +1,80 @@
+[
+  {
+    "path": "_next/static/chunks/2392pd2acz-n5.js",
+    "url": "https://litter.catbox.moe/zmgfh1.js",
+    "bytes": 144145,
+    "sha256": "71a545e995519ccf321e54d22b707d063836795130513978b30faa1093095530"
+  },
+  {
+    "path": "_next/static/chunks/06ulu8gaqpy16.css",
+    "url": "https://litter.catbox.moe/z4gtq6.css",
+    "bytes": 85794,
+    "sha256": "9894de319615703514abe8a7267a62ebe344e2e4be2083f92925365de6fb1905"
+  },
+  {
+    "path": "_next/static/chunks/0841yph1h3x4n.js",
+    "url": "https://litter.catbox.moe/l604q5.js",
+    "bytes": 79353,
+    "sha256": "069329284997640c7b77345407e485c7ae3e87c936ec7b0f84bca92dbc75a042"
+  },
+  {
+    "path": "_next/static/chunks/0wg6uhsfoakvl.js",
+    "url": "https://litter.catbox.moe/pf70xp.js",
+    "bytes": 74606,
+    "sha256": "0cf3a358524ac9e38153a4bfdb4cddebd7aec72b5cd682851c6ccdb53656bd34"
+  },
+  {
+    "path": "_next/static/chunks/1is65tzs3r9oi.js",
+    "url": "https://litter.catbox.moe/r27pdd.js",
+    "bytes": 37869,
+    "sha256": "117142ff4cbf73866cfc6eb6256742bd96370ecf9e1c8602bac755b8f5d9a09b"
+  },
+  {
+    "path": "_next/static/chunks/2_7u5bdb3hmoi.js",
+    "url": "https://litter.catbox.moe/auyf90.js",
+    "bytes": 226818,
+    "sha256": "f03574ab6248d6467b93c1a9e9e8b08fd36c2e02e95cb4145b71e0a09d39adf9"
+  },
+  {
+    "path": "_next/static/chunks/2rg9uy_bisqrw.js",
+    "url": "https://litter.catbox.moe/3qef7d.js",
+    "bytes": 44232,
+    "sha256": "e81e43f60243a5a893fb12216caf6b4fd8cb052bcb0e12bd9a9f60f761b3f206"
+  },
+  {
+    "path": "_next/static/chunks/3zv6rywduhrwj.js",
+    "url": "https://litter.catbox.moe/omql5y.js",
+    "bytes": 28439,
+    "sha256": "8db02b91ece7482063568a471e1afc19d8d239bbe712a4db8422681b16359ad9"
+  },
+  {
+    "path": "overlay/index.html",
+    "url": "https://litter.catbox.moe/pnzf32.html",
+    "bytes": 11184,
+    "sha256": "8ca123037595b18fb6c2b954aac3e4133423f821a71c91fa2fddc885dc047336"
+  },
+  {
+    "path": "watch/index.html",
+    "url": "https://litter.catbox.moe/4196ry.html",
+    "bytes": 10960,
+    "sha256": "3bfd38cc0367167599ca548858417df03edbc7d200d5eed3fcb1de6b8328d35a"
+  },
+  {
+    "path": "community/index.html",
+    "url": "https://litter.catbox.moe/v2hxa8.html",
+    "bytes": 65272,
+    "sha256": "716d1a2a6289df54dc510671ee5fcc9349e847bf9001ac1c120a7ffc33c3fea8"
+  },
+  {
+    "path": "404.html",
+    "url": "https://litter.catbox.moe/zj65st.html",
+    "bytes": 11046,
+    "sha256": "2c53384da199d4b962cd8eb3f18e15be7e6ed1071ff5da2ccffb8432517359e1"
+  },
+  {
+    "path": "404/index.html",
+    "url": "https://litter.catbox.moe/irzlg7.html",
+    "bytes": 11046,
+    "sha256": "2c53384da199d4b962cd8eb3f18e15be7e6ed1071ff5da2ccffb8432517359e1"
+  }
+]
