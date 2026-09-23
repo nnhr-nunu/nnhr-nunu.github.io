@@ -1,0 +1,43 @@
+name: decode-deploy
+on:
+  push:
+    paths:
+      - '_deploy-payload/**'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode base64 payloads into site files
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, json, os
+          from pathlib import Path
+          root = Path('_deploy-payload')
+          man = json.loads((root/'manifest.json').read_text())
+          for item in man:
+              dest = Path(item['path'])
+              parts = []
+              for i in range(item['parts']):
+                  fp = root / f"{item['path'].replace('/', '__')}.{i:02d}.b64"
+                  parts.append(fp.read_text().strip())
+              data = base64.b64decode(''.join(parts))
+              got = hashlib.sha256(data).hexdigest()
+              if got != item['sha256']:
+                  raise SystemExit(f"sha mismatch {item['path']}: {got} != {item['sha256']}")
+              dest.parent.mkdir(parents=True, exist_ok=True)
+              dest.write_bytes(data)
+              print('wrote', dest, len(data))
+          PY
+      - name: Commit decoded assets
+        run: |
+          git config user.name "ぬぬはら"
+          git config user.email "110435137+nnhr-nunu@users.noreply.github.com"
+          rm -rf _deploy-payload
+          git add -A
+          git diff --cached --quiet && echo 'no changes' && exit 0
+          git commit -m "deploy: 利用中の配信一覧とコメントパルス"
+          git push
